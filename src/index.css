@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 147 100% 45%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96.1%;
@@ -26,7 +26,7 @@ All colors MUST be HSL.
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 147 100% 45%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,26 +34,26 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 147 100% 45%;
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 216 12% 8%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 147 100% 45%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 216 12% 15%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 216 12% 15%;
-    --sidebar-ring: 147 100% 45%;
+    --sidebar-ring: 217 91% 60%;
 
-    --chat-user: 147 100% 45%;
+    --chat-user: 217 91% 60%;
     --chat-user-foreground: 0 0% 100%;
     --chat-ai: 0 0% 96%;
     --chat-ai-foreground: 222.2 84% 4.9%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(147 100% 45%), hsl(147 100% 35%));
-    --shadow-glow: 0 0 40px hsl(147 100% 45% / 0.3);
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 50%));
+    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.3);
   }
 
   .dark {
@@ -66,7 +66,7 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 147 100% 50%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -75,7 +75,7 @@ All colors MUST be HSL.
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 147 100% 50%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
@@ -83,24 +83,24 @@ All colors MUST be HSL.
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 147 100% 50%;
+    --ring: 217 91% 60%;
 
     --sidebar-background: 216 12% 8%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 147 100% 50%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 216 12% 15%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 216 12% 15%;
-    --sidebar-ring: 147 100% 50%;
+    --sidebar-ring: 217 91% 60%;
 
-    --chat-user: 147 100% 50%;
+    --chat-user: 217 91% 60%;
     --chat-user-foreground: 0 0% 100%;
     --chat-ai: 217.2 32.6% 17.5%;
     --chat-ai-foreground: 210 40% 98%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(147 100% 50%), hsl(147 100% 40%));
-    --shadow-glow: 0 0 40px hsl(147 100% 50% / 0.4);
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 50%));
+    --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.4);
   }
 }
 

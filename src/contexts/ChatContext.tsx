@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { Conversation, Message, ChatContextType } from "@/types/chat";
 import { mistralService, MistralMessage } from "@/lib/mistral";
+import { geminiService } from "@/lib/gemini";
 import { toast } from "sonner";
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -35,6 +36,8 @@ const SYSTEM_PROMPT = `Você é o LedChat, um assistente de IA especializado em 
 - Marketing automation
 
 Sempre forneça respostas práticas, acionáveis e baseadas em melhores práticas atuais do mercado. Seja direto, útil e mantenha um tom profissional mas acessível. Quando apropriado, sugira ferramentas específicas, métricas para acompanhar e exemplos práticos.
+
+IMPORTANTE: Quando o usuário solicitar a criação ou geração de uma imagem, você deve responder com exatamente a string "GENERATE_IMAGE:" seguida pela descrição detalhada em inglês da imagem solicitada. Exemplo: se o usuário pedir "crie uma imagem do Homer Simpson", você deve responder: "GENERATE_IMAGE:Homer Simpson character from The Simpsons cartoon, yellow skin, bald head with two hairs, white shirt, blue pants, sitting and eating donuts, high quality detailed illustration".
 
 Se a pergunta não for relacionada a marketing digital, responda de forma educada mas redirecione para tópicos de marketing sempre que possível.`;
 
@@ -201,10 +204,49 @@ export function ChatProvider({ children }: ChatProviderProps) {
         }
       );
 
+      // Check if the response contains image generation request
+      let finalContent = assistantContent;
+      
+      if (assistantContent.includes("GENERATE_IMAGE:")) {
+        try {
+          const imagePromptMatch = assistantContent.match(/GENERATE_IMAGE:(.+)/);
+          if (imagePromptMatch) {
+            const imagePrompt = imagePromptMatch[1].trim();
+            
+            // Update message to show image generation in progress
+            const generatingMessage: Message = {
+              ...assistantMessage,
+              content: "Gerando imagem... Por favor, aguarde.",
+              isStreaming: true,
+            };
+
+            const generatingMessages = [...currentConversation.messages, userMessage, generatingMessage];
+            const generatingConversation = {
+              ...currentConversation,
+              messages: generatingMessages,
+              updatedAt: new Date(),
+            };
+
+            setCurrentConversation(generatingConversation);
+            setConversations(prev =>
+              prev.map(conv => conv.id === currentConversation.id ? generatingConversation : conv)
+            );
+
+            // Generate image using Gemini
+            const imageUrl = await geminiService.generateImage(imagePrompt);
+            
+            finalContent = `Aqui está a imagem que você solicitou:\n\n![Imagem gerada](${imageUrl})`;
+          }
+        } catch (error) {
+          console.error("Error generating image:", error);
+          finalContent = "Desculpe, houve um erro ao gerar a imagem. Tente novamente com uma descrição diferente.";
+        }
+      }
+
       // Finalize the message
       const finalMessage: Message = {
         ...assistantMessage,
-        content: assistantContent,
+        content: finalContent,
         isStreaming: false,
       };
 

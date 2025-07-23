@@ -56,7 +56,7 @@ export function ChatInput() {
               onKeyDown={handleKeyDown}
               placeholder={placeholderText}
               className={cn(
-                "min-h-[20px] max-h-32 resize-none border-0 p-0 shadow-none focus-visible:ring-0",
+                "min-h-[24px] max-h-32 resize-none border-0 p-0 shadow-none focus-visible:ring-0 text-base",
                 "scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent"
               )}
               disabled={isLoading}

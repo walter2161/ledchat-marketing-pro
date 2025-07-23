@@ -33,6 +33,24 @@ export function ChatMessage({ message }: ChatMessageProps) {
         return <h3 key={index} className="text-base font-bold mt-2 mb-1">{line.substring(4)}</h3>;
       }
       
+      // Handle images
+      if (line.startsWith('![') && line.includes('](') && line.includes(')')) {
+        const imageMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+        if (imageMatch) {
+          const [, altText, imageUrl] = imageMatch;
+          return (
+            <div key={index} className="my-4">
+              <img 
+                src={imageUrl} 
+                alt={altText} 
+                className="max-w-full h-auto rounded-lg border border-border shadow-sm"
+                style={{ maxHeight: '400px' }}
+              />
+            </div>
+          );
+        }
+      }
+      
       // Handle bullets
       if (line.startsWith('- ') || line.startsWith('* ')) {
         return <li key={index} className="ml-4 list-disc">{line.substring(2)}</li>;
